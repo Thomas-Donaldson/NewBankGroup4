@@ -1,36 +1,36 @@
-## Roles Rota
- 
- ### Sprint 1 - Dates: Week 2 (09 - 15/03/2022)
+## Roles Rota for New Bank Group 4
 
- | Role |  Name |
- | --- | --- |
- | Scrum Muster | edit Name |
- | Product Owner | edit Name |
+ ### Sprint 1 - Week 2 (09 - 15/03/2022)
 
- ### Sprint 2 - Dates: Week 3 (16 - 22/03/2022)
+| Role |  Name |
+| --- | --- |
+| Scrum Master | edit Name |
+| Product Owner | edit Name |
 
- | Role |  Name |
- | --- | --- |
- | Scrum Muster | edit Name |
- | Product Owner | edit Name |
+ ### Sprint 2 - Week 3 (16 - 22/03/2022)
 
- ### Sprint 3 - Dates: Week 4 (23 - 29/03/2022)
+| Role |  Name |
+| --- | --- |
+| Scrum Master | edit Name |
+| Product Owner | edit Name |
 
- | Role |  Name |
- | --- | --- |
- | Scrum Muster | edit Name |
- | Product Owner | edit Name |
+ ### Sprint 3 - Week 4 (23 - 29/03/2022)
 
- ### Sprint 4 - Dates: Week 5 (30/03 - 05/04/2022)
+| Role |  Name |
+| --- | --- |
+| Scrum Master | edit Name |
+| Product Owner | edit Name |
 
- | Role |  Name |
- | --- | --- |
- | Scrum Muster | edit Name |
- | Product Owner | edit Name |
+ ### Sprint 4 - Week 5 (30/03 - 05/04/2022)
 
- ### Sptint 5 - Dates: Week 6 (06 - 12/04/2022)
+| Role |  Name |
+| --- | --- |
+| Scrum Master | edit Name |
+| Product Owner | edit Name |
 
- | Role |  Name |
- | --- | --- |
- | Scrum Muster | edit Name |
- | Product Owner | edit Name |
+ ### Sprint 5 - Week 6 (06 - 12/04/2022)
+
+| Role |  Name |
+| --- | --- |
+| Scrum Master | edit Name |
+| Product Owner | edit Name |
