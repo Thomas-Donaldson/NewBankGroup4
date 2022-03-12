@@ -4,7 +4,7 @@
 
 | Role |  Name |
 | --- | --- |
-| Scrum Master | edit Name |
+| Scrum Master | Ben |
 | Product Owner | edit Name |
 
  ### Sprint 2 - Week 3 (16 - 22/03/2022)
