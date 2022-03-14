@@ -41,11 +41,12 @@ public class NewBank {
 	}
 
 	// commands from the NewBank customer are processed in this method
-	public synchronized String processRequest(CustomerID customer, String request) {
+	public synchronized String processRequest(CustomerID customer, int request) {
 		if(customers.containsKey(customer.getKey())) {
 			switch(request) {
-			case "SHOWMYACCOUNTS" : return showMyAccounts(customer);
-			default : return "FAIL";
+			case 1 : return showMyAccounts(customer);
+			case 5: return logOut();
+			default: return unavailableService();
 			}
 		}
 		return "FAIL";
@@ -54,5 +55,7 @@ public class NewBank {
 	private String showMyAccounts(CustomerID customer) {
 		return (customers.get(customer.getKey())).accountsToString();
 	}
+	private String logOut(){ return "log-user-out";	}
+	private String unavailableService(){ return "oops! The selected service is currently unavailable.";	}
 
 }
