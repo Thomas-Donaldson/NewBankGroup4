@@ -1,5 +1,6 @@
 package newbank.server;
 
+import java.util.Date;
 import java.util.HashMap;
 
 public class NewBank {
@@ -13,7 +14,7 @@ public class NewBank {
 	}
 	
 	private void addTestData() {
-		Customer bhagy = new Customer();
+		Customer bhagy = new Customer(new CustomerDetails("Bhagy", "Bhagy",new Date(), "4475556", "bhagy@bath.ac.uk"));
 		bhagy.setPassword("bananabread");
 		bhagy.addAccount(new Account("Main", 1000.0));
 		customers.put("Bhagy", bhagy);
@@ -45,6 +46,7 @@ public class NewBank {
 		if(customers.containsKey(customer.getKey())) {
 			switch(request) {
 			case 1 : return showMyAccounts(customer);
+			case 3 : return editDetails(customer);
 			case 5: return logOut();
 			default: return unavailableService();
 			}
@@ -55,7 +57,10 @@ public class NewBank {
 	private String showMyAccounts(CustomerID customer) {
 		return (customers.get(customer.getKey())).accountsToString();
 	}
+	private String editDetails(CustomerID customer){
+		Customer loggedInCustomer = bank.customers.get(customer.getKey());
+		return loggedInCustomer.getAccountDetails();
+	}
 	private String logOut(){ return "log-user-out";	}
 	private String unavailableService(){ return "oops! The selected service is currently unavailable.";	}
-
 }
