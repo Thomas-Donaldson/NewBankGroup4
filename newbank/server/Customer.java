@@ -1,14 +1,26 @@
 package newbank.server;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Customer {
 	
 	private ArrayList<Account> accounts;
 	private String password;
+	private CustomerDetails customerDetails;
 	
 	public Customer() {
 		accounts = new ArrayList<>();
+		customerDetails = new CustomerDetails("","",new Date(), "","");
+	}
+
+	public Customer(CustomerDetails customerDetails) {
+		this.customerDetails = customerDetails;
+		accounts = new ArrayList<>();
+	}
+
+	public String getAccountDetails(){
+		return customerDetails.toString();
 	}
 	
 	public String accountsToString() {
