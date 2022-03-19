@@ -1,5 +1,8 @@
 package newbank.server;
 
+import java.io.BufferedReader;
+import java.io.PrintWriter;
+import java.nio.Buffer;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -42,11 +45,11 @@ public class NewBank {
 	}
 
 	// commands from the NewBank customer are processed in this method
-	public synchronized String processRequest(CustomerID customer, int request) {
+	public synchronized String processRequest(CustomerID customer, int request, BufferedReader in, PrintWriter out) {
 		if(customers.containsKey(customer.getKey())) {
 			switch(request) {
 			case 1 : return showMyAccounts(customer);
-			case 3 : return editDetails(customer);
+			case 3 : return editDetails(customer, in, out);
 			case 5: return logOut();
 			default: return unavailableService();
 			}
@@ -57,9 +60,9 @@ public class NewBank {
 	private String showMyAccounts(CustomerID customer) {
 		return (customers.get(customer.getKey())).accountsToString();
 	}
-	private String editDetails(CustomerID customer){
+	private String editDetails(CustomerID customer, BufferedReader in, PrintWriter out) {
 		Customer loggedInCustomer = bank.customers.get(customer.getKey());
-		return loggedInCustomer.getAccountDetails();
+		return loggedInCustomer.editAccountDetails();
 	}
 	private String logOut(){ return "log-user-out";	}
 	private String unavailableService(){ return "oops! The selected service is currently unavailable.";	}
