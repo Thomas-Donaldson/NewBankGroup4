@@ -11,8 +11,8 @@
 
 | Role |  Name |
 | --- | --- |
-| Scrum Master | edit Name |
-| Product Owner | edit Name |
+| Scrum Master | Jino |
+| Product Owner | Mercy |
 
  ### Sprint 3 - Week 4 (23 - 29/03/2022)
 
