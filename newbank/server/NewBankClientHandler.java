@@ -72,7 +72,7 @@ public class NewBankClientHandler extends Thread{
 				handleInvalidCustomerRequest(customer);
 			}
 			System.out.println("Request from " + customer.getKey());
-			String response = bank.processRequest(customer, request);
+			String response = bank.processRequest(customer, request, in, out);
 			if(response.equals("log-user-out")){
 				logOut();
 			} else if (response.equals("deletion-requested")) {

@@ -44,4 +44,14 @@ public class Customer {
 	public boolean testPassword(String password) {
 		return this.password.equals(password);
 	}
+
+	public CustomerDetails getCustomerDetails() {
+		return customerDetails;
+	}
+
+
+
+
+
+
 }
