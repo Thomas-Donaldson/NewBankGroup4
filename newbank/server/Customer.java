@@ -31,6 +31,10 @@ public class Customer {
 		return s;
 	}
 
+	public ArrayList<Account> getAccounts() {
+		return accounts;
+	};
+
 	public void addAccount(Account account) {
 		accounts.add(account);		
 	}

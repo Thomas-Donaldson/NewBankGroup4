@@ -75,6 +75,10 @@ public class NewBankClientHandler extends Thread{
 			String response = bank.processRequest(customer, request);
 			if(response.equals("log-user-out")){
 				logOut();
+			} else if (response.equals("deletion-requested")) {
+				out.println("Please specify the account you would like to close.");
+				String accountString = getUserInput();
+				out.println(bank.processDeletion(customer, accountString));
 			}
 			out.println(response);
 			out.println("Press enter to continue");
@@ -108,6 +112,7 @@ public class NewBankClientHandler extends Thread{
 		catch (IOException e){
 			System.out.println(e.getMessage());
 			out.println("Sorry, something went wrong\nPlease enter your input again");
+			delay(1000);
 			getUserInput();
 		}
 		return input;
