@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Objects;
 import java.util.Locale;
 
 public class NewBank {
@@ -25,6 +26,7 @@ public class NewBank {
 		Customer bhagy = new Customer(new CustomerDetails("Bhagy", "Bhagy",new Date(), "4475556", "bhagy@bath.ac.uk"));
 		bhagy.setPassword("bananabread");
 		bhagy.addAccount(new Account("Main", 1000.0));
+		bhagy.addAccount(new Account("Savings", 0.0));
 		customers.put("Bhagy", bhagy);
 		
 		Customer christina = new Customer();
@@ -55,13 +57,27 @@ public class NewBank {
 			switch(request) {
 			case 1 : return showMyAccounts(customer);
 			case 3 : return editDetails(customer, in, out);
-			case 5: return logOut();
+			case 5 : return deletionPrompt();
+			case 6 : return logOut();
 			default: return unavailableService();
 			}
 		}
 		return "FAIL";
 	}
-	
+
+	public synchronized String processDeletion(CustomerID customer, String accountName) {
+		for (Account a : customers.get(customer.getKey()).getAccounts()) {
+			if (Objects.equals(a.getAccountName(), accountName) && a.getOpeningBalance() != 0.0) {
+				return "Deletion failed; nonzero account balance.";
+
+			} else if (Objects.equals(a.getAccountName(), accountName) && a.getOpeningBalance() == 0.0) {
+				customers.get(customer.getKey()).getAccounts().remove(a);
+				return "Deletion successful.";
+			}
+		}
+		return "Deletion failed; account not found.";
+	}
+
 	private String showMyAccounts(CustomerID customer) {
 		return (customers.get(customer.getKey())).accountsToString();
 	}
@@ -131,6 +147,9 @@ public class NewBank {
 		}
 
 		return "Thanks, your details have been updated";
+	}
+	private String deletionPrompt(){
+		return "deletion-requested";
 	}
 
 	private String logOut(){ return "log-user-out";	}

@@ -4,15 +4,15 @@
 
 | Role |  Name |
 | --- | --- |
-| Scrum Master | edit Name |
-| Product Owner | edit Name |
+| Scrum Master | Ben Blanchard |
+| Product Owner | Thomas Donaldson |
 
  ### Sprint 2 - Week 3 (16 - 22/03/2022)
 
 | Role |  Name |
 | --- | --- |
-| Scrum Master | edit Name |
-| Product Owner | edit Name |
+| Scrum Master | Tzenis Bimpa |
+| Product Owner | Mercy Mugii Wanjohi |
 
  ### Sprint 3 - Week 4 (23 - 29/03/2022)
 

@@ -11,7 +11,14 @@ public class Account {
 	}
 	
 	public String toString() {
-		return (accountName + ": " + openingBalance);
+		return (accountName + ": " + openingBalance + "\n");
+	}
+
+	public double getOpeningBalance(){
+		return openingBalance;
+	}
+	public String getAccountName() {
+		return accountName;
 	}
 
 }
