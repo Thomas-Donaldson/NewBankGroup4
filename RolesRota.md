@@ -9,15 +9,15 @@
 
  ### Sprint 2 - Week 3 (16 - 22/03/2022)
 
-| Role |  Name |
-| --- | --- |
-| Scrum Master | Tzenis Bimpa |
-| Product Owner | Mercy Mugii Wanjohi |
+| Role | Name              |
+| --- |-------------------|
+| Scrum Master | Tzenis Bimpa      |
+| Product Owner | Mercy Mugii Deche |
 
  ### Sprint 3 - Week 4 (23 - 29/03/2022)
 
 | Role |  Name |
-| --- | --- |
+| --- | -- |
 | Scrum Master | edit Name |
 | Product Owner | edit Name |
 
