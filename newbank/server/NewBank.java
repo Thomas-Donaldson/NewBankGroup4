@@ -56,6 +56,7 @@ public class NewBank {
 		if(customers.containsKey(customer.getKey())) {
 			switch(request) {
 			case 1 : return showMyAccounts(customer);
+			case 2 : return createAccount(customer, in, out);
 			case 3 : return editDetails(customer, in, out);
 			case 5 : return deletionPrompt();
 			case 6 : return logOut();
@@ -80,6 +81,78 @@ public class NewBank {
 
 	private String showMyAccounts(CustomerID customer) {
 		return (customers.get(customer.getKey())).accountsToString();
+	}
+
+	private String createAccount(CustomerID customer, BufferedReader in, PrintWriter out) {
+		Customer loggedInCustomer = bank.customers.get(customer.getKey());
+		String userInput;
+		int initialBalance = 0;
+		String typeAccount;
+		boolean newAccount = true;
+
+		// Account details
+		out.println("Please specify the type of account to be created:");
+		out.println("Press 1 for Main Account");
+		out.println("Press 2 for Savings Account");
+		out.println("Press 3 for Checking Account");
+		userInput = getUserInput(in, out);
+
+		int option = 0;
+		try {
+			option = Integer.parseInt(userInput);
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+		}
+
+		switch(option) {
+			case 1 : typeAccount = "Main";
+			break;
+			case 2 : typeAccount = "Savings";
+			break;
+			case 3 : typeAccount = "Checking";
+			break;
+			default: typeAccount = "Invalid";
+		}
+
+		if (typeAccount == "Invalid") {
+			return "Invalid type of account, your account has not been created";
+		}
+		else {
+			out.println("Would you like to make an opening Deposit? If yes, type a value. If no, press enter");
+			userInput = getUserInput(in, out);
+			if (userInput == "") {
+				userInput = "0";
+			}
+
+			try {
+				initialBalance = Integer.parseInt(userInput);
+				if (initialBalance >= 0) {
+					for (Account a : customers.get(customer.getKey()).getAccounts()) {
+						if (Objects.equals(a.getAccountName(), typeAccount)) {
+
+							newAccount = false;
+							return "There is already a " + typeAccount + " account created, please select a different type of account";
+
+						}
+					}
+					if (newAccount) {
+
+						loggedInCustomer.addAccount(new Account(typeAccount, initialBalance));
+						return "Thanks, your account has been created";
+
+					} else {
+						return "There is already a " + typeAccount + " account created, please select a different type of account";
+					}
+				} else {
+					return "The opening deposit must be a greater than 0, your account has not been created";
+				}
+			}
+			catch(NumberFormatException e){
+				e.printStackTrace();
+				return "Invalid opening deposit, your account has not been created";
+			}
+
+		}
 	}
 
 	private String editDetails(CustomerID customer, BufferedReader in, PrintWriter out) {
