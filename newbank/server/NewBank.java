@@ -126,7 +126,9 @@ public class NewBank {
 
 			try {
 				initialBalance = Integer.parseInt(userInput);
+				//check initial deposit
 				if (initialBalance >= 0) {
+					//check if the customer already have an account from the same type
 					for (Account a : customers.get(customer.getKey()).getAccounts()) {
 						if (Objects.equals(a.getAccountName(), typeAccount)) {
 
