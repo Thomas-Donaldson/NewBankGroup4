@@ -56,7 +56,6 @@ public class NewBank {
 		if(customers.containsKey(customer.getKey())) {
 			switch(request) {
 			case 1 : return showMyAccounts(customer);
-			case 2 : return createAccount(customer, in, out);
 			case 3 : return editDetails(customer, in, out);
 			case 5 : return deletionPrompt();
 			case 6 : return logOut();
@@ -156,6 +155,7 @@ public class NewBank {
 
 		}
 	}
+
 
 	private String editDetails(CustomerID customer, BufferedReader in, PrintWriter out) {
 		Customer loggedInCustomer = bank.customers.get(customer.getKey());
