@@ -18,8 +18,8 @@
 
 | Role |  Name |
 | --- | -- |
-| Scrum Master | edit Name |
-| Product Owner | edit Name |
+| Scrum Master | Thomas Donaldson |
+| Product Owner | Leonardo Pedrosa |
 
  ### Sprint 4 - Week 5 (30/03 - 05/04/2022)
 
