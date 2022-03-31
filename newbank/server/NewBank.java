@@ -207,12 +207,16 @@ public class NewBank {
 			return "Invalid input value. Please enter a number.";
 		}
 
-
-		if (outAccount.getBalance() < quantityToMove) {
+		if (quantityToMove < 0) {
+			return "Please enter a non-negative number";
+		}
+		else if (outAccount.getBalance() < quantityToMove) {
 			return "Not enough money in that account. Exiting process.";
 		}
 		else {
 			// MAKE TRANSFER BETWEEN ACCOUNTS
+			outAccount.subtractFromBalance(quantityToMove);
+			inAccount.addToBalance(quantityToMove);
 			out.println("Successfully moved money. Here are your accounts.");
 			out.println(loggedInCustomer.accountsToString());
 		}
