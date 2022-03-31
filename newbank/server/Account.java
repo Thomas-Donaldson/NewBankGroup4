@@ -3,22 +3,26 @@ package newbank.server;
 public class Account {
 	
 	private String accountName;
-	private double openingBalance;
+	private double balance;
 
 	public Account(String accountName, double openingBalance) {
 		this.accountName = accountName;
-		this.openingBalance = openingBalance;
+		this.balance = openingBalance;
 	}
 	
 	public String toString() {
-		return (accountName + ": " + openingBalance + "\n");
+		return (accountName + ": " + balance + "\n");
 	}
 
-	public double getOpeningBalance(){
-		return openingBalance;
+	public double getBalance(){
+		return balance;
 	}
 	public String getAccountName() {
 		return accountName;
+	}
+
+	public void addToBalance(double amountToAdd) {
+		balance = balance + amountToAdd;
 	}
 
 }
