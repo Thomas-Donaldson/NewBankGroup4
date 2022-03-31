@@ -9,10 +9,12 @@ public class Menu {
         availableMenuOptions = new HashMap<>() {};
         availableMenuOptions.put(1,"display your accounts.");
         availableMenuOptions.put(2,"create a new account.");
-        availableMenuOptions.put(3,"edit your details.");
-        availableMenuOptions.put(4,"request a loan.");
-        availableMenuOptions.put(5,"close an account");
-        availableMenuOptions.put(6,"log out");
+        availableMenuOptions.put(3,"move money between your accounts");
+        availableMenuOptions.put(4,"transfer money to someone else");
+        availableMenuOptions.put(5,"edit your details.");
+        availableMenuOptions.put(6,"request a loan.");
+        availableMenuOptions.put(7,"close an account");
+        availableMenuOptions.put(8,"log out");
     }
     public String display(){
         StringBuilder menu = new StringBuilder();
