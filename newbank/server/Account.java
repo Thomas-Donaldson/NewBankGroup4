@@ -25,4 +25,8 @@ public class Account {
 		balance = balance + amountToAdd;
 	}
 
+	public void subtractFromBalance(double amountToSubtract) {
+		balance = balance - amountToSubtract;
+	}
+
 }
