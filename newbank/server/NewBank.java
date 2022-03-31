@@ -3,7 +3,6 @@ package newbank.server;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.nio.Buffer;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -57,9 +56,10 @@ public class NewBank {
 			switch(request) {
 			case 1 : return showMyAccounts(customer);
 			case 2 : return createAccount(customer, in, out);
-			case 3 : return editDetails(customer, in, out);
-			case 5 : return deletionPrompt();
-			case 6 : return logOut();
+			case 3 : return moveMoneyBetweenAccounts(customer, in, out);
+			case 5 : return editDetails(customer, in, out);
+			case 7 : return deletionPrompt();
+			case 8 : return logOut();
 			default: return unavailableService();
 			}
 		}
@@ -68,10 +68,10 @@ public class NewBank {
 
 	public synchronized String processDeletion(CustomerID customer, String accountName) {
 		for (Account a : customers.get(customer.getKey()).getAccounts()) {
-			if (Objects.equals(a.getAccountName(), accountName) && a.getOpeningBalance() != 0.0) {
+			if (Objects.equals(a.getAccountName(), accountName) && a.getBalance() != 0.0) {
 				return "Deletion failed; nonzero account balance.";
 
-			} else if (Objects.equals(a.getAccountName(), accountName) && a.getOpeningBalance() == 0.0) {
+			} else if (Objects.equals(a.getAccountName(), accountName) && a.getBalance() == 0.0) {
 				customers.get(customer.getKey()).getAccounts().remove(a);
 				return "Deletion successful.";
 			}
@@ -157,6 +157,69 @@ public class NewBank {
 		}
 	}
 
+	private String moveMoneyBetweenAccounts(CustomerID customer, BufferedReader in, PrintWriter out) {
+		Customer loggedInCustomer = bank.customers.get(customer.getKey());
+
+		// Get list of accounts
+		ArrayList<Account> customerAccounts = loggedInCustomer.getAccounts();
+
+		// Create arraylist of account names
+		HashMap<String, Account> customerAccountMap = new HashMap<>();
+		for (Account account: customerAccounts) {
+			customerAccountMap.put(account.getAccountName(), account);
+		}
+
+		// Print out list of accounts
+		out.println("Here are your accounts.");
+		out.println(loggedInCustomer.accountsToString());
+
+		// Ask which account to move from
+
+		out.println("Which account do you want to move money out of?");
+		String outAccountString = getUserInput(in, out);
+		Account outAccount = customerAccountMap.get(outAccountString);
+		if (customerAccountMap.containsKey(outAccountString)) {
+			;
+		}
+		else {
+			return "That's not a valid account name. Exiting process.";
+		}
+
+		// Ask which account to move from
+		out.println("Which account do you want to move money into?");
+		String inAccountString = getUserInput(in, out);
+		Account inAccount = customerAccountMap.get(inAccountString);
+		if (customerAccountMap.containsKey(inAccountString)) {
+			;
+		}
+		else {
+			return "That's not a valid account name. Exiting process.";
+		}
+
+		// How much would you like to move?
+		out.println("How much money would you like to move?");
+		String quantityToMoveString = getUserInput(in, out);
+		double quantityToMove;
+
+		try {
+			quantityToMove = Double.parseDouble(quantityToMoveString);
+		} catch (Exception e) {
+			return "Invalid input value. Please enter a number.";
+		}
+
+
+		if (outAccount.getBalance() < quantityToMove) {
+			return "Not enough money in that account. Exiting process.";
+		}
+		else {
+			// MAKE TRANSFER BETWEEN ACCOUNTS
+			out.println("Successfully moved money. Here are your accounts.");
+			out.println(loggedInCustomer.accountsToString());
+		}
+
+
+		return "Returning to menu";
+	}
 
 	private String editDetails(CustomerID customer, BufferedReader in, PrintWriter out) {
 		Customer loggedInCustomer = bank.customers.get(customer.getKey());
