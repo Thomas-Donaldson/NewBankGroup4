@@ -38,6 +38,10 @@ public class NewBank {
 		john.addAccount(new Account("Checking", 250.0));
 		customers.put("John", john);
 	}
+
+	private HashMap<String, Customer> getCustomers() {
+		return customers;
+	}
 	
 	public static NewBank getBank() {
 		return bank;
@@ -57,6 +61,7 @@ public class NewBank {
 			case 1 : return showMyAccounts(customer);
 			case 2 : return createAccount(customer, in, out);
 			case 3 : return moveMoneyBetweenAccounts(customer, in, out);
+			case 4: return payAnotherUser(customer, in, out);
 			case 5 : return editDetails(customer, in, out);
 			case 7 : return deletionPrompt();
 			case 8 : return logOut();
@@ -220,6 +225,97 @@ public class NewBank {
 			out.println("Successfully moved money. Here are your accounts.");
 			out.println(loggedInCustomer.accountsToString());
 		}
+
+
+		return "Returning to menu";
+	}
+
+	private String payAnotherUser(CustomerID customer, BufferedReader in, PrintWriter out) {
+		Customer loggedInCustomer = bank.customers.get(customer.getKey());
+
+		// Get list of accounts
+		ArrayList<Account> customerAccounts = loggedInCustomer.getAccounts();
+
+		// Create arraylist of account names
+		HashMap<String, Account> customerAccountMap = new HashMap<>();
+		for (Account account: customerAccounts) {
+			customerAccountMap.put(account.getAccountName(), account);
+		}
+
+		// Print out list of accounts
+		out.println("Here are your accounts.");
+		out.println(loggedInCustomer.accountsToString());
+
+		// Ask which account to move from
+		out.println("Which account do you want to move money out of?");
+		String outAccountString = getUserInput(in, out);
+		Account outAccount = customerAccountMap.get(outAccountString);
+		if (customerAccountMap.containsKey(outAccountString)) {
+			;
+		}
+		else {
+			return "That's not a valid account name. Exiting process.";
+		}
+
+		//-----------------------------------------------------------------------------------------
+
+		// GET LIST OF ALL USERS AS HASHMAP
+		out.println("Enter the name of the user you want to pay.");
+		String userToPayString = getUserInput(in, out);
+
+		if (customers.containsKey(userToPayString)) {
+			;
+		}
+		else {
+			return "The user is not a member of the bank. Exiting now.";
+		}
+
+		Customer userToPay = customers.get(userToPayString);
+		ArrayList<Account> userToPayAccounts = userToPay.getAccounts();
+
+		// Create arraylist of account names
+		HashMap<String, Account> userToPayAccountMap = new HashMap<>();
+		for (Account account: userToPayAccounts) {
+			userToPayAccountMap.put(account.getAccountName(), account);
+		}
+
+		// --------------------------------------------------------------------------------------------
+
+		out.println("Enter the name of the account you want to pay into.");
+		String userToPayAccountString = getUserInput(in, out);
+		Account inAccount = userToPayAccountMap.get(userToPayAccountString);
+		if (userToPayAccountMap.containsKey(userToPayAccountString)) {
+			;
+		}
+		else {
+			return "That user does not have an account under that name. Exiting now.";
+		}
+
+		// ---------------------------------------------------------------------------------------------
+
+		// How much would you like to move?
+		out.println("How much money would you like to move?");
+		String quantityToMoveString = getUserInput(in, out);
+		double quantityToMove;
+
+		try {
+			quantityToMove = Double.parseDouble(quantityToMoveString);
+		} catch (Exception e) {
+			return "Invalid input value. Please enter a number.";
+		}
+
+		if (quantityToMove < 0) {
+			return "Please enter a non-negative number";
+		}
+		else if (outAccount.getBalance() < quantityToMove) {
+			return "Not enough money in that account. Exiting process.";
+		}
+		else {
+			outAccount.subtractFromBalance(quantityToMove);
+			inAccount.addToBalance(quantityToMove);
+			out.println("Payment successful");
+		}
+
 
 
 		return "Returning to menu";
