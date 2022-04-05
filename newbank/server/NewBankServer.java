@@ -1,11 +1,11 @@
 package newbank.server;
 
+import newbank.server.Database.AccountTypes;
 import newbank.server.Database.NewBankDb;
-
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.sql.Connection;
+import java.util.List;
 
 public class NewBankServer extends Thread{
 	
@@ -39,9 +39,13 @@ public class NewBankServer extends Thread{
 	
 	public static void main(String[] args) throws IOException {
 		// starts a new NewBankServer thread on a specified port number
-		NewBankDb dbConnection = new NewBankDb();
-		Connection connection = dbConnection.createConnection();
-		dbConnection.closeConnection();
+		NewBankDb db = new NewBankDb();
+		AccountTypes newAccountType = new AccountTypes();
+		newAccountType.Type = "lola";
+		//db.accountTypes.create(newAccountType);
+		//db.accountTypes.update(3, newAccountType);
+		//db.accountTypes.delete(3);
+		List<AccountTypes> accountTypesList = db.accountTypes.getAll();
 		new NewBankServer(14002).start();
 	}
 }
