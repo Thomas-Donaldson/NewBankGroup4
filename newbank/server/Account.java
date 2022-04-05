@@ -4,10 +4,12 @@ public class Account {
 	
 	private String accountName;
 	private double balance;
+	private String accountType;
 
-	public Account(String accountName, double openingBalance) {
+	public Account(String accountName, double openingBalance, String accountType) {
 		this.accountName = accountName;
 		this.balance = openingBalance;
+		this.accountType = accountType;
 	}
 	
 	public String toString() {

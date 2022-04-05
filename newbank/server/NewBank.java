@@ -24,18 +24,18 @@ public class NewBank {
 	private void addTestData() {
 		Customer bhagy = new Customer(new CustomerDetails("Bhagy", "Bhagy",new Date(), "4475556", "bhagy@bath.ac.uk"));
 		bhagy.setPassword("bananabread");
-		bhagy.addAccount(new Account("Main", 1000.0));
-		bhagy.addAccount(new Account("Savings", 0.0));
+		bhagy.addAccount(new Account("Main", 1000.0, "Checking"));
+		bhagy.addAccount(new Account("Savings", 0.0, "Savings"));
 		customers.put("Bhagy", bhagy);
 		
 		Customer christina = new Customer();
 		christina.setPassword("groupfourbestgroup");
-		christina.addAccount(new Account("Savings", 1500.0));
+		christina.addAccount(new Account("Savings", 1500.0, "Savings"));
 		customers.put("Christina", christina);
 		
 		Customer john = new Customer();
 		john.setPassword("password123");
-		john.addAccount(new Account("Checking", 250.0));
+		john.addAccount(new Account("Checking", 250.0, "Checking"));
 		customers.put("John", john);
 	}
 
@@ -143,8 +143,7 @@ public class NewBank {
 						}
 					}
 					if (newAccount) {
-
-						loggedInCustomer.addAccount(new Account(typeAccount, initialBalance));
+						loggedInCustomer.addAccount(new Account(typeAccount, initialBalance, typeAccount));
 						return "Thanks, your account has been created";
 
 					} else {
