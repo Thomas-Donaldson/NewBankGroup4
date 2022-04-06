@@ -54,6 +54,14 @@ public class NewBank {
 		return null;
 	}
 
+	public synchronized CustomerID checkUserNameExists(String userName){
+		if((customers.containsKey(userName)) ){
+			return new CustomerID(userName);
+		} else{
+			return null;
+		}
+
+	}
 	// commands from the NewBank customer are processed in this method
 	public synchronized String processRequest(CustomerID customer, int request, BufferedReader in, PrintWriter out) {
 		if(customers.containsKey(customer.getKey())) {
