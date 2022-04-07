@@ -34,6 +34,17 @@ public class NewBankClientHandler extends Thread{
 			out.println("Enter Username");
 			String userName = getUserInput();
 			// ask for password
+
+			//check user name exists
+			CustomerID userIsCustomer = bank.checkUserNameExists(userName);
+
+			if (userIsCustomer == null)
+			{
+				out.println("USER DOES NOT EXIST. TRY AGAIN");
+				loginSequence();
+			}
+
+
 			out.println("Enter Password");
 			String password = getUserInput();
 			out.println("Checking Details...");
